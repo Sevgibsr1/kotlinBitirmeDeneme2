@@ -1,6 +1,7 @@
 package com.surendramaran.yolov8tflite
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -31,12 +32,13 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
         // Kamerayı başlat butonu
-        findViewById<Button>(R.id.startButton).setOnClickListener {
+        findViewById<Button>(R.id.cameraButton).setOnClickListener {
             if (checkCameraPermission()) {
                 startMainActivity()
             } else {
@@ -45,17 +47,17 @@ class SplashActivity : AppCompatActivity() {
         }
 
         // Galeriden seç butonu
-        findViewById<Button>(R.id.galleryButton).setOnClickListener {
+        findViewById<Button>(R.id.locationButton).setOnClickListener {
             galleryLauncher.launch("image/*")
         }
 
         // Ayarlar butonu
-        findViewById<Button>(R.id.settingsButton).setOnClickListener {
+        findViewById<Button>(R.id.callButton).setOnClickListener {
             showSettingsDialog()
         }
 
         // 112'yi Ara butonu
-        findViewById<Button>(R.id.aboutButton).setOnClickListener {
+        findViewById<Button>(R.id.emergencyButton).setOnClickListener {
             if (checkCallPermission()) {
                 call112()
             } else {
